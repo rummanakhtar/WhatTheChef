@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "693118540234",
+    "firebase_url": "https://what-the-chef.firebaseio.com",
+    "project_id": "what-the-chef",
+    "storage_bucket": "what-the-chef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693118540234:android:952e16d40d695117d55733",
+        "android_client_info": {
+          "package_name": "com.example.whatthechef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693118540234-520ep64efftdob2q9q5dkahnprpr7ru7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.whatthechef",
+            "certificate_hash": "598b43f90fe0eeef8e01f53bf8a0d45bc372f746"
+          }
+        },
+        {
+          "client_id": "693118540234-v2a4167ldm0e4p8bflj4jglp8drot50q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOAZRgnASA1HIpyqF8-3FTQIRx7UsWRks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693118540234-v2a4167ldm0e4p8bflj4jglp8drot50q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
