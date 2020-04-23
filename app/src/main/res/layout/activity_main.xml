@@ -69,7 +69,7 @@
         app:layout_constraintWidth_percent=".80" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordsignin"
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginTop="15dp"
@@ -94,7 +94,7 @@
         app:layout_constraintGuide_end="35dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/forgotpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -102,8 +102,8 @@
         android:text="Forgot Password?"
         android:textColor="#8D8D8D"
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordsignin"
+        app:layout_constraintTop_toBottomOf="@+id/passwordsignin" />
 
 
     <Button
@@ -122,12 +122,12 @@
         android:typeface="normal"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/signIn2"
+        app:layout_constraintTop_toBottomOf="@+id/signinbutton"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent=".80" />
 
     <Button
-        android:id="@+id/signIn2"
+        android:id="@+id/signinbutton"
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginTop="18dp"
@@ -142,7 +142,7 @@
         android:typeface="normal"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/forgotpassword"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent=".80" />
 
@@ -238,15 +238,47 @@
         android:id="@+id/signinwith"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:alpha="1"
+        android:fontFamily="@font/segoeui"
+        android:text="____________"
+        android:textColor="#8D8D8D"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/signinwith3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toEndOf="@+id/signinwith3"
+        app:layout_constraintTop_toTopOf="@+id/signinwith3" />
+
+    <TextView
+        android:id="@+id/signinwith3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:alpha="1"
         android:fontFamily="@font/segoeui"
         android:text="Sign In with"
-        android:textColor="#FFFFFF"
+        android:textColor="#8D8D8D"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/google"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/createacc" />
+
+    <TextView
+        android:id="@+id/signinwith2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:alpha="1"
+        android:fontFamily="@font/segoeui"
+        android:text="____________"
+        android:textColor="#8D8D8D"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/signinwith3"
+        app:layout_constraintEnd_toStartOf="@+id/signinwith3"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/signinwith3" />
 
     <TextView
         android:id="@+id/whatthechef"
@@ -271,6 +303,16 @@
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/whatthechef" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="23dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/createacc" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

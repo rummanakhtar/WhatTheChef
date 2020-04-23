@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Dashboard">
 
     <ImageView
         android:id="@+id/imageView"
@@ -61,10 +61,11 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <TextView
-        android:id="@+id/hindi"
+        android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/segoeui"
+        android:onClick="logOut"
         android:text="LOG OUT"
         android:textColor="#FDC324"
         android:textSize="15dp"

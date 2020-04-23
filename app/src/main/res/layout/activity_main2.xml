@@ -51,11 +51,11 @@
         android:paddingLeft="13.5dp"
         android:paddingTop="6.5dp"
         app:ccp_textColor="#2F3E9E"
-        app:layout_constraintStart_toStartOf="@+id/fullnamesignup"
-        app:layout_constraintTop_toBottomOf="@+id/fullnamesignup" />
+        app:layout_constraintStart_toStartOf="@+id/namesignup"
+        app:layout_constraintTop_toBottomOf="@+id/namesignup" />
 
     <EditText
-        android:id="@+id/fullnamesignup"
+        android:id="@+id/namesignup"
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginTop="50dp"
@@ -74,7 +74,7 @@
 
 
     <EditText
-        android:id="@+id/phnosignup"
+        android:id="@+id/phonesignup"
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginTop="20dp"
@@ -85,10 +85,10 @@
         android:paddingLeft="20dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#8D8D8D"
-        app:layout_constraintEnd_toEndOf="@+id/fullnamesignup"
+        app:layout_constraintEnd_toEndOf="@+id/namesignup"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/ccp"
-        app:layout_constraintTop_toBottomOf="@+id/fullnamesignup"
+        app:layout_constraintTop_toBottomOf="@+id/namesignup"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent=".62" />
 
@@ -106,17 +106,18 @@
         android:textColorHint="#8D8D8D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phnosignup"
+        app:layout_constraintTop_toBottomOf="@+id/phonesignup"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent=".80" />
 
     <Button
-        android:id="@+id/signupbtn"
+        android:id="@+id/signupbutton"
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/button"
         android:fontFamily="@font/segoeuibold"
+        android:onClick="onClick"
         android:text="Sign Up"
         android:textAllCaps="false"
         android:textColor="#FD413C"
@@ -198,5 +199,16 @@
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/leftguideline"
         app:layout_constraintTop_toBottomOf="@+id/whatthechef" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bottomguideline"
+        app:layout_constraintEnd_toStartOf="@+id/rightguideline"
+        app:layout_constraintStart_toStartOf="@+id/leftguideline"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
