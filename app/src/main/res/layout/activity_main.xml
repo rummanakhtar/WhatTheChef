@@ -36,25 +36,11 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="21dp" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/cardlight"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".688"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".88" />
-
     <EditText
         android:id="@+id/emailsignin"
         android:layout_width="0dp"
         android:layout_height="37dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/email"
         android:ems="10"
         android:hint="Email"
@@ -62,9 +48,9 @@
         android:paddingLeft="20dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#8D8D8D"
+        app:layout_constraintBottom_toTopOf="@+id/passwordsignin"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/imageView8"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent=".80" />
 
@@ -72,7 +58,7 @@
         android:id="@+id/passwordsignin"
         android:layout_width="0dp"
         android:layout_height="37dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/email"
         android:ems="10"
         android:hint="Password"
@@ -80,9 +66,9 @@
         android:paddingLeft="20dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#8D8D8D"
+        app:layout_constraintBottom_toTopOf="@+id/forgotpassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/emailsignin"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent=".80" />
 
@@ -97,32 +83,32 @@
         android:id="@+id/forgotpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
         android:fontFamily="@font/segoeui"
         android:text="Forgot Password?"
         android:textColor="#8D8D8D"
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/passwordsignin"
-        app:layout_constraintTop_toBottomOf="@+id/passwordsignin" />
+        app:layout_constraintBottom_toTopOf="@+id/signinbutton"
+        app:layout_constraintEnd_toEndOf="@+id/passwordsignin" />
 
 
     <Button
         android:id="@+id/createacc"
         android:layout_width="0dp"
         android:layout_height="37dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/segoeuibold"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/facebookbutton"
+        android:fontFamily="@font/segoeui"
         android:onClick="signupscreen"
         android:text="Create An Account"
         android:textAllCaps="false"
-        android:textColor="#FD413C"
+        android:textColor="#212529"
         android:textIsSelectable="false"
         android:textSize="15sp"
         android:typeface="normal"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/signinbutton"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent=".80" />
 
@@ -130,29 +116,17 @@
         android:id="@+id/signinbutton"
         android:layout_width="0dp"
         android:layout_height="37dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/button"
-        android:fontFamily="@font/segoeuibold"
+        android:fontFamily="@font/segoeui"
         android:onClick="dashboard"
         android:text="Sign In"
         android:textAllCaps="false"
-        android:textColor="#FD413C"
+        android:textColor="#212529"
         android:textIsSelectable="false"
         android:textSize="15sp"
         android:typeface="normal"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/forgotpassword"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".80" />
-
-    <Button
-        android:id="@+id/google"
-        android:layout_width="0dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/phonebutton"
-        app:layout_constraintBottom_toTopOf="@+id/facebook"
+        app:layout_constraintBottom_toTopOf="@+id/createacc"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintWidth_default="percent"
@@ -177,15 +151,34 @@
 
     <Button
         android:id="@+id/phone"
-        android:layout_width="0dp"
+        android:layout_width="102dp"
         android:layout_height="37dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="45dp"
         android:background="@drawable/phonebutton"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".80" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/createacc"
+        app:layout_constraintWidth_percent=".247" />
+
+    <Button
+        android:id="@+id/google"
+        android:layout_width="102dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/phonebutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/createacc"
+        app:layout_constraintWidth_percent=".247" />
+
+    <Button
+        android:id="@+id/facebook"
+        android:layout_width="101dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/phonebutton"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/phone"
+        app:layout_constraintStart_toEndOf="@+id/google"
+        app:layout_constraintWidth_percent=".247" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -205,18 +198,6 @@
         tools:visibility="visible" />
 
 
-    <Button
-        android:id="@+id/facebook"
-        android:layout_width="0dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/phonebutton"
-        app:layout_constraintBottom_toTopOf="@+id/phone"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".80" />
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="10.01dp"
@@ -235,50 +216,18 @@
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/signinwith"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:alpha="1"
-        android:fontFamily="@font/segoeui"
-        android:text="____________"
-        android:textColor="#8D8D8D"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/signinwith3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toEndOf="@+id/signinwith3"
-        app:layout_constraintTop_toTopOf="@+id/signinwith3" />
-
-    <TextView
         android:id="@+id/signinwith3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
         android:alpha="1"
         android:fontFamily="@font/segoeui"
         android:text="Sign In with"
-        android:textColor="#8D8D8D"
+        android:textColor="#FFFFFF"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/google"
+        app:layout_constraintBottom_toTopOf="@+id/facebook"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/createacc" />
-
-    <TextView
-        android:id="@+id/signinwith2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:alpha="1"
-        android:fontFamily="@font/segoeui"
-        android:text="____________"
-        android:textColor="#8D8D8D"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/signinwith3"
-        app:layout_constraintEnd_toStartOf="@+id/signinwith3"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/signinwith3" />
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/whatthechef"
@@ -286,7 +235,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/leaguespartan"
-        android:text="What The Chef!"
+        android:text="WHAT THE CHEF!"
         android:textColor="#FFFFFF"
         android:textSize="27dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -307,12 +256,12 @@
     <ProgressBar
         android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyle"
-        android:layout_width="23dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="2dp"
+        android:layout_width="32dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/signinwith3"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/createacc" />
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

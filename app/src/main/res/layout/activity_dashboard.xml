@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/segoeui"
-        android:text="to What The Chef!"
+        android:text="to WHAT THE CHEF!"
         android:textColor="#8D8D8D"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -311,7 +311,7 @@
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="0dp"
-        android:layout_height="6dp"
+        android:layout_height="8dp"
         android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
@@ -326,7 +326,7 @@
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="0dp"
-        android:layout_height="6dp"
+        android:layout_height="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
@@ -338,7 +338,7 @@
     <ImageView
         android:id="@+id/imageView15"
         android:layout_width="0dp"
-        android:layout_height="6dp"
+        android:layout_height="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
@@ -350,7 +350,7 @@
     <ImageView
         android:id="@+id/imageView16"
         android:layout_width="0dp"
-        android:layout_height="6dp"
+        android:layout_height="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintEnd_toEndOf="@+id/imageView9"
