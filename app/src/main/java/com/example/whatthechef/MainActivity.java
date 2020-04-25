@@ -1,9 +1,14 @@
 package com.example.whatthechef;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +17,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.identity.SignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,7 +34,23 @@ public class MainActivity extends AppCompatActivity {
     Button signinbutton;
     ProgressBar progressBar;
     FirebaseAuth firebaseAuth;
+    private long backPressedTime;
+    private Toast backToast;
 
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime+2000 > System.currentTimeMillis()) {
+            backToast.cancel();
+            super.onBackPressed();
+            return;
+        }else{
+            backToast= Toast.makeText(this, "Press Back Again to Exit", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime=System.currentTimeMillis();
+    }
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +60,15 @@ public class MainActivity extends AppCompatActivity {
         password=findViewById(R.id.passwordsignin);
         signinbutton=findViewById(R.id.signinbutton);
         progressBar=findViewById(R.id.progressBar2);
+
+
         firebaseAuth=FirebaseAuth.getInstance();
         progressBar.setVisibility(View.INVISIBLE);
+        //check if user has logged in previously using email and password
         if(firebaseAuth.getCurrentUser() !=null){
             startActivity(new Intent(getApplicationContext(),Dashboard.class));
             finish();
         }
-
         signinbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,21 +92,35 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(getApplicationContext(),Dashboard.class));
+                            finish();
                         }
                         else{
                             Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
 
             }
         });
-
-
-
     }
+
     public void signupscreen(View view) {
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context arg0, Intent intent) {
+                String action = intent.getAction();
+                assert action != null;
+                if (action.equals("finish_activity")) {
+                    finish();
+                    // DO WHATEVER YOU WANT.
+                }
+            }
+        };
+        registerReceiver(broadcastReceiver, new IntentFilter("finish_activity"));
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
 

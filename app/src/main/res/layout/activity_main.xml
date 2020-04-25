@@ -142,43 +142,48 @@
         android:clickable="false"
         android:elevation="6dp"
         android:outlineProvider="none"
-        app:layout_constraintBottom_toBottomOf="@+id/google"
-        app:layout_constraintEnd_toEndOf="@+id/google"
-        app:layout_constraintStart_toStartOf="@+id/google"
-        app:layout_constraintTop_toTopOf="@+id/google"
+        app:layout_constraintBottom_toBottomOf="@+id/googlebutton"
+        app:layout_constraintEnd_toEndOf="@+id/googlebutton"
+        app:layout_constraintStart_toStartOf="@+id/googlebutton"
+        app:layout_constraintTop_toTopOf="@+id/googlebutton"
         app:srcCompat="@drawable/google"
         tools:visibility="visible" />
 
     <Button
         android:id="@+id/phone"
-        android:layout_width="102dp"
+        android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginBottom="45dp"
         android:background="@drawable/phonebutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/createacc"
-        app:layout_constraintWidth_percent=".247" />
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".24" />
+
 
     <Button
-        android:id="@+id/google"
-        android:layout_width="102dp"
+        android:id="@+id/googlebutton"
+        android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginBottom="45dp"
         android:background="@drawable/phonebutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/createacc"
-        app:layout_constraintWidth_percent=".247" />
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".24"/>
 
     <Button
         android:id="@+id/facebook"
-        android:layout_width="101dp"
+        android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginBottom="45dp"
         android:background="@drawable/phonebutton"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toStartOf="@+id/phone"
-        app:layout_constraintStart_toEndOf="@+id/google"
-        app:layout_constraintWidth_percent=".247" />
+        app:layout_constraintStart_toEndOf="@+id/googlebutton"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".24" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -242,7 +247,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/namedash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
