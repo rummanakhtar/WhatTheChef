@@ -2,6 +2,7 @@ package com.example.whatthechef;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -9,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,20 +26,33 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
+    public static final int GOOGLE_SIGN_IN_CODE = 10000;
     EditText email,password;
-    Button signinbutton;
+    Button signInButton;
     ProgressBar progressBar;
     FirebaseAuth firebaseAuth;
     private long backPressedTime;
     private Toast backToast;
+    GoogleSignInClient signInClient;
+    GoogleSignInOptions gso;
+    SignInButton signIn;
 
+    //GO TO DASHBOARD
+    public void callDashboard(){
+        startActivity(new Intent(getApplicationContext(),Dashboard.class));
+        finish();
+    }
 
+    //PRESS BACK AGAIN TO EXIT BEGINS
     @Override
     public void onBackPressed() {
         if(backPressedTime+2000 > System.currentTimeMillis()) {
@@ -50,44 +65,82 @@ public class MainActivity extends AppCompatActivity {
         }
         backPressedTime=System.currentTimeMillis();
     }
+    //PRESS BACK AGAIN TO EXIT ENDS
+
+    //ON CREATE BEGINS
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //LINKING THE XML ELEMENTS WITH THEIR RESPECTIVE JAVA VARIABLES
         email=findViewById(R.id.emailsignin);
         password=findViewById(R.id.passwordsignin);
-        signinbutton=findViewById(R.id.signinbutton);
+        signInButton=findViewById(R.id.signinbutton);
         progressBar=findViewById(R.id.progressBar2);
+        signIn=findViewById(R.id.google);
 
-
+        //PRE REQUISITES FOR AUTHENTICATION
         firebaseAuth=FirebaseAuth.getInstance();
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        signInClient = GoogleSignIn.getClient(this, gso);
+
         progressBar.setVisibility(View.INVISIBLE);
-        //check if user has logged in previously using email and password
-        if(firebaseAuth.getCurrentUser() !=null){
-            startActivity(new Intent(getApplicationContext(),Dashboard.class));
+
+        //CHECKS IF USER HAS LOGGED IN VIA GOOGLE ACCOUNT ALREADY
+        GoogleSignInAccount signInAccount=GoogleSignIn.getLastSignedInAccount(this);
+        if(signInAccount !=null){
+            Toast.makeText(this, "Logged in via google already", Toast.LENGTH_SHORT).show();
+            callDashboard();
             finish();
         }
-        signinbutton.setOnClickListener(new View.OnClickListener() {
+
+        //GOOGLE SIGN IN BUTTON LISTENER BEGINS
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailstring = email.getText().toString().trim();
-                String passwordstring= password.getText().toString().trim();
-                if(TextUtils.isEmpty(emailstring)){
+                Intent sign=signInClient.getSignInIntent();
+                startActivityForResult(sign,GOOGLE_SIGN_IN_CODE);
+            }
+        });
+        //GOOGLE SIGN IN BUTTON LISTENER ENDS
+
+        //CHECKS IF USER HAS ALREADY LOGGED IN USING EMAIL AND PASSWORD
+        if(firebaseAuth.getCurrentUser() !=null){
+            callDashboard();
+            finish();
+        }
+
+        //SIGN IN BUTTON BEGINS
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String emailString = email.getText().toString().trim();
+                String passwordString= password.getText().toString().trim();
+
+                //EMAIL IS REQUIRED
+                if(TextUtils.isEmpty(emailString)){
                     email.setError("Email is Required");
                     return;
                 }
-                if(TextUtils.isEmpty(passwordstring)){
+
+                //PASSWORD IS REQUIRED
+                if(TextUtils.isEmpty(passwordString)){
                     password.setError("Password is Required");
                     return;
                 }
-                if(passwordstring.length()<6){
+
+                //PASSWORD AT LEAST 6 CHARACTERS
+                if(passwordString.length()<6){
                     password.setError("Password must have at least 6 characters");
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
-                firebaseAuth.signInWithEmailAndPassword(emailstring,passwordstring).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                firebaseAuth.signInWithEmailAndPassword(emailString,passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
@@ -97,17 +150,36 @@ public class MainActivity extends AppCompatActivity {
                             finish();
                         }
                         else{
-                            Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
-
             }
         });
+        //SIGN IN BUTTON ENDS
     }
+    //ON CREATE ENDS
 
-    public void signupscreen(View view) {
+    //GOOGLE SIGN IN BEGINS
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==GOOGLE_SIGN_IN_CODE){
+            Task<GoogleSignInAccount> signInTask=GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount signInAcc=signInTask.getResult(ApiException.class);
+                Toast.makeText(this, "Google Account is connected", Toast.LENGTH_SHORT).show();
+                callDashboard();
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    //GOOGLE SIGN IN ENDS
+
+    //GO TO SIGN UP SCREEN BEGINS
+    public void signUpScreen(View view) {
         BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
             @Override
@@ -123,12 +195,6 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(broadcastReceiver, new IntentFilter("finish_activity"));
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
-
     }
-    public void dashboard(View view) {
-        Intent intent = new Intent(MainActivity.this, Dashboard.class);
-        startActivity(intent);
-    }
-
-
+    //GO TO SIGN UP SCREEN ENDS
 }

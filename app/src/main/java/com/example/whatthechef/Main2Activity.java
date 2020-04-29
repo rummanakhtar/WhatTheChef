@@ -1,9 +1,11 @@
 package com.example.whatthechef;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,13 +26,12 @@ import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class Main2Activity extends AppCompatActivity {
-
-
-    EditText emailsignup,passwordsignup,namesignup,phonesignup;
-    Button signupbutton;
+    EditText emailSignUp,passwordSignUp,nameSignUp,phoneSignUp;
+    Button signUpButton;
     FirebaseAuth firebaseAuth;
     ProgressBar progressBar;
     FirebaseFirestore firebaseFirestore;
@@ -38,60 +39,68 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
-
         final CountryCodePicker countryCodePicker;
-        countryCodePicker=findViewById(R.id.ccp);
 
-        emailsignup=findViewById(R.id.emailsignup);
-        passwordsignup=findViewById(R.id.passwordsignup);
-        namesignup=findViewById(R.id.namesignup);
-        phonesignup=findViewById(R.id.phonesignup);
-        signupbutton=findViewById(R.id.signupbutton);
+        //LINKING THE XML ELEMENTS WITH THEIR RESPECTIVE JAVA VARIABLES
+        countryCodePicker=findViewById(R.id.ccp);
+        emailSignUp=findViewById(R.id.emailsignup);
+        passwordSignUp=findViewById(R.id.passwordsignup);
+        nameSignUp=findViewById(R.id.namesignup);
+        phoneSignUp=findViewById(R.id.phonesignup);
+        signUpButton=findViewById(R.id.signupbutton);
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseFirestore=FirebaseFirestore.getInstance();
         progressBar=findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
-
-        signupbutton.setOnClickListener(new View.OnClickListener() {
+        //SIGN UP BUTTON BEGINS
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String email = emailsignup.getText().toString().trim();
-                String password= passwordsignup.getText().toString().trim();
-                final String name=namesignup.getText().toString().trim();
-                final String phone=phonesignup.getText().toString().trim();
-                final String countrycode=countryCodePicker.getSelectedCountryCode().toString().trim();
+                final String email = emailSignUp.getText().toString().trim();
+                String password= passwordSignUp.getText().toString().trim();
+                final String name=nameSignUp.getText().toString().trim();
+                final String phone=phoneSignUp.getText().toString().trim();
+                final String countryCode=countryCodePicker.getSelectedCountryCode().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
-                    emailsignup.setError("Email is Required");
+                if(TextUtils.isEmpty(name)){
+                    nameSignUp.setError("Name is Required");
                     return;
                 }
+                if(TextUtils.isEmpty(phone)){
+                    phoneSignUp.setError("Phone number is Required");
+                    return;
+                }
+                if(TextUtils.isEmpty(email)){
+                    emailSignUp.setError("Email is Required");
+                    return;
+                }
+
                 if(TextUtils.isEmpty(password)){
-                    passwordsignup.setError("Password is Required");
+                    passwordSignUp.setError("Password is Required");
                     return;
                 }
                 if(password.length()<6){
-                    passwordsignup.setError("Password must have at least 6 characters");
+                    passwordSignUp.setError("Password must have at least 6 characters");
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
 
                 firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Main2Activity.this, "Account Created", Toast.LENGTH_SHORT).show();
-                            userID=firebaseAuth.getCurrentUser().getUid();
+                            userID= Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
                             DocumentReference documentReference=firebaseFirestore.collection("users").document(userID);
                             Map<String,Object> user= new HashMap<>();
                             user.put("Name",name);
                             user.put("Phone",phone);
                             user.put("Email",email);
-                            user.put("Country Code","0"+countrycode);
+                            user.put("Country Code","0"+countryCode);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -103,27 +112,15 @@ public class Main2Activity extends AppCompatActivity {
                             finish();
                             Intent intent = new Intent("finish_activity");
                             sendBroadcast(intent);
-
-
                         }else{
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(Main2Activity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Main2Activity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
-
-
-
             }
         });
-
-
-
-
-
-
-
-
+        //SIGN UP BUTTON ENDS
     }
+    //ON CREATE ENDS
 }
