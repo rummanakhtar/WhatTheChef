@@ -13,10 +13,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Dashboard"></activity>
         <activity
-            android:name=".Main2Activity"
+            android:name=".SignUpScreen"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LogInScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

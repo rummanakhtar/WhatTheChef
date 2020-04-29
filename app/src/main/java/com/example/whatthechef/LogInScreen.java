@@ -19,14 +19,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,7 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class LogInScreen extends AppCompatActivity {
     public static final int GOOGLE_SIGN_IN_CODE = 10000;
     EditText email,password;
     Button signInButton;
@@ -93,9 +91,7 @@ public class MainActivity extends AppCompatActivity {
         //CHECKS IF USER HAS LOGGED IN VIA GOOGLE ACCOUNT ALREADY
         GoogleSignInAccount signInAccount=GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount !=null){
-            Toast.makeText(this, "Logged in via google already", Toast.LENGTH_SHORT).show();
             callDashboard();
-            finish();
         }
 
         //GOOGLE SIGN IN BUTTON LISTENER BEGINS
@@ -111,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
         //CHECKS IF USER HAS ALREADY LOGGED IN USING EMAIL AND PASSWORD
         if(firebaseAuth.getCurrentUser() !=null){
             callDashboard();
-            finish();
         }
 
         //SIGN IN BUTTON BEGINS
@@ -144,13 +139,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogInScreen.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(getApplicationContext(),Dashboard.class));
                             finish();
                         }
                         else{
-                            Toast.makeText(MainActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogInScreen.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
@@ -193,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         registerReceiver(broadcastReceiver, new IntentFilter("finish_activity"));
-        Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+        Intent intent = new Intent(LogInScreen.this, SignUpScreen.class);
         startActivity(intent);
     }
     //GO TO SIGN UP SCREEN ENDS

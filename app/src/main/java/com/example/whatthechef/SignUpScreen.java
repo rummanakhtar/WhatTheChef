@@ -3,7 +3,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,7 +28,7 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class Main2Activity extends AppCompatActivity {
+public class SignUpScreen extends AppCompatActivity {
     EditText emailSignUp,passwordSignUp,nameSignUp,phoneSignUp;
     Button signUpButton;
     FirebaseAuth firebaseAuth;
@@ -93,7 +92,7 @@ public class Main2Activity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(Main2Activity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpScreen.this, "Account Created", Toast.LENGTH_SHORT).show();
                             userID= Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
                             DocumentReference documentReference=firebaseFirestore.collection("users").document(userID);
                             Map<String,Object> user= new HashMap<>();
@@ -114,7 +113,7 @@ public class Main2Activity extends AppCompatActivity {
                             sendBroadcast(intent);
                         }else{
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(Main2Activity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpScreen.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -12,8 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,6 +31,12 @@ public class Dashboard extends AppCompatActivity {
     String userID;
     private long backPressedTime;
     private Toast backToast;
+
+    //GO TO LOGIN SCREEN
+    public void goToLoginScreen(){
+        startActivity(new Intent(getApplicationContext(), LogInScreen.class));
+        finish();
+    }
 
     //PRESS BACK AGAIN TO EXIT BEGINS
     @Override
@@ -75,15 +82,14 @@ public class Dashboard extends AppCompatActivity {
                 }
             });
         }
-
     }
     //ON CREATE ENDS
 
     //LOGOUT BUTTON BEGINS
     public void logOut(View view) {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        finish();
+            FirebaseAuth.getInstance().signOut();
+            GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut();
+            goToLoginScreen();
     }
     //LOGOUT BUTTON ENDS
 }
