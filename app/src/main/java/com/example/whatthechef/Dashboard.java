@@ -63,6 +63,7 @@ public class Dashboard extends AppCompatActivity {
         name=findViewById(R.id.namedash);
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseFirestore=FirebaseFirestore.getInstance();
+        final GoogleSignInAccount signInAccount=GoogleSignIn.getLastSignedInAccount(this);
 
         //GETS THE CURRENT LOGGED IN USER
         try{
@@ -71,7 +72,7 @@ public class Dashboard extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //EXTRACTS DATA FROM DATABASE IF USER LOGGED IN VIA EMAIL AND PASSWORD
+        //EXTRACTS DATA FROM DATABASE IF USER LOGGED IN VIA EMAIL AND PASSWORD BEGINS
         if(firebaseAuth.getCurrentUser() !=null){
             DocumentReference documentReference= firebaseFirestore.collection("users").document(userID);
             documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -79,9 +80,13 @@ public class Dashboard extends AppCompatActivity {
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                     assert documentSnapshot != null;
                     name.setText(documentSnapshot.getString("Name"));
+                    if(signInAccount !=null){
+                        name.setText(firebaseAuth.getCurrentUser().getDisplayName());
+                    }
                 }
             });
         }
+        //EXTRACTS DATA FROM DATABASE IF USER LOGGED IN VIA EMAIL AND PASSWORD ENDS
     }
     //ON CREATE ENDS
 

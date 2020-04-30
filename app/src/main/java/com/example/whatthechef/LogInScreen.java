@@ -27,8 +27,10 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
 
@@ -82,17 +84,12 @@ public class LogInScreen extends AppCompatActivity {
         //PRE REQUISITES FOR AUTHENTICATION
         firebaseAuth=FirebaseAuth.getInstance();
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("693118540234-v2a4167ldm0e4p8bflj4jglp8drot50q.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
         signInClient = GoogleSignIn.getClient(this, gso);
 
         progressBar.setVisibility(View.INVISIBLE);
-
-        //CHECKS IF USER HAS LOGGED IN VIA GOOGLE ACCOUNT ALREADY
-        GoogleSignInAccount signInAccount=GoogleSignIn.getLastSignedInAccount(this);
-        if(signInAccount !=null){
-            callDashboard();
-        }
 
         //GOOGLE SIGN IN BUTTON LISTENER BEGINS
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +101,9 @@ public class LogInScreen extends AppCompatActivity {
         });
         //GOOGLE SIGN IN BUTTON LISTENER ENDS
 
-        //CHECKS IF USER HAS ALREADY LOGGED IN USING EMAIL AND PASSWORD
-        if(firebaseAuth.getCurrentUser() !=null){
+        //CHECKS IF USER HAS ALREADY LOGGED IN
+        GoogleSignInAccount signInAccount=GoogleSignIn.getLastSignedInAccount(this);
+        if(firebaseAuth.getCurrentUser() !=null || signInAccount !=null){
             callDashboard();
         }
 
@@ -164,8 +162,15 @@ public class LogInScreen extends AppCompatActivity {
             Task<GoogleSignInAccount> signInTask=GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount signInAcc=signInTask.getResult(ApiException.class);
-                Toast.makeText(this, "Google Account is connected", Toast.LENGTH_SHORT).show();
-                callDashboard();
+
+                AuthCredential authCredential= GoogleAuthProvider.getCredential(signInAcc.getIdToken(),null);
+                firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(getApplicationContext(), "Google Account is connected", Toast.LENGTH_SHORT).show();
+                        callDashboard();
+                    }
+                });
             } catch (ApiException e) {
                 e.printStackTrace();
             }

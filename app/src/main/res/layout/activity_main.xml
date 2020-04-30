@@ -87,7 +87,7 @@
         android:fontFamily="@font/segoeui"
         android:text="Forgot Password?"
         android:textColor="#8D8D8D"
-        android:textSize="14dp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/signinbutton"
         app:layout_constraintEnd_toEndOf="@+id/passwordsignin" />
 
@@ -217,7 +217,7 @@
         android:fontFamily="@font/segoeui"
         android:text="Sign In with"
         android:textColor="#FFFFFF"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/facebook"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -230,7 +230,7 @@
         android:fontFamily="@font/leaguespartan"
         android:text="WHAT THE CHEF!"
         android:textColor="#FFFFFF"
-        android:textSize="27dp"
+        android:textSize="27sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
@@ -242,7 +242,7 @@
         android:fontFamily="@font/seguisb"
         android:text="Log In to Cook"
         android:textColor="#FEBC2C"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/whatthechef" />
 
