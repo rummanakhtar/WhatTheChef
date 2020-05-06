@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -31,6 +32,8 @@ public class Dashboard extends AppCompatActivity {
     String userID;
     private long backPressedTime;
     private Toast backToast;
+
+
 
     //GO TO LOGIN SCREEN
     public void goToLoginScreen(){
@@ -97,4 +100,9 @@ public class Dashboard extends AppCompatActivity {
             goToLoginScreen();
     }
     //LOGOUT BUTTON ENDS
+
+    public void goToRecipe(View view){
+        startActivity(new Intent(getApplicationContext(), RecipeActivity.class));
+    }
+
 }
