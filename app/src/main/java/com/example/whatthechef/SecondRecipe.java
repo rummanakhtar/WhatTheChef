@@ -4,10 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,30 +22,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class RecipeActivity extends AppCompatActivity {
+public class SecondRecipe extends AppCompatActivity {
     RecyclerView recyclerView;
     MyAdapter adapter;
-    //private static String JSON_URL="https://drive.google.com/uc?export=view&id=1Ow-9OofFXwAx2am6HCntS5CzLWyWx_D9";
-    private static String JSON_URL="https://rummanakhtar.github.io/dataforwtc/fooddata.json";
+    private static String JSON_URL="https://rummanakhtar.github.io/dataforwtc/arabiandishes.json";
     List<ListItem> items;
 
-    @SuppressLint("Assert")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe);
+        setContentView(R.layout.activity_second_recipe);
 
         recyclerView = findViewById(R.id.recyclerView);
         items=new ArrayList<>();
         extractData();
 
-
-        //recyclerView.setHasFixedSize(true);
-
-
+//        Intent i=getIntent();
+//        String title=i.getStringExtra("title");
+//        textTitle.setText(title);
     }
-
     private void extractData() {
         RequestQueue queue= Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONArray>() {
@@ -58,6 +52,7 @@ public class RecipeActivity extends AppCompatActivity {
                         ListItem listItem = new ListItem();
                         listItem.setItemName(jsonObject.getString("title"));
                         listItem.setItemDescription(jsonObject.getString("description"));
+                        listItem.setCardFlag(jsonObject.getString("cardflag"));
                         listItem.setItemImage(jsonObject.getString("image"));
                         items.add(listItem);
                     } catch (JSONException e) {

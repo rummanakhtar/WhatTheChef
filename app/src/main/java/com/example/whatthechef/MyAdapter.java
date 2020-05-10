@@ -2,6 +2,8 @@ package com.example.whatthechef;
 
 import android.app.LauncherActivity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<ListItem> listItems;
@@ -32,12 +36,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         holder.tvTitle.setText(listItems.get(position).getItemName());
         holder.tvDescription.setText(listItems.get(position).getItemDescription());
+        holder.cardFlag.setText(listItems.get(position).getCardFlag());
         Picasso.get().load(listItems.get(position).getItemImage()).into(holder.ivImage);
-
-
     }
 
     @Override
@@ -49,9 +51,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         TextView tvTitle;
         TextView tvDescription;
         ImageView ivImage;
+        TextView cardFlag;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            //set onClickListener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos=getAdapterPosition();
+                    if(listItems.get(pos).getCardFlag()==null){
+                        listItems.get(pos).setCardFlag("0");
+                    }
+                    if(listItems.get(pos).getCardFlag().equals("0")){
+                        Intent i=new Intent(v.getContext(),SecondRecipe.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        v.getContext().startActivity(i);
+                    }
+                    else{
+                        Intent i=new Intent(v.getContext(),FinalRecipe.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        v.getContext().startActivity(i);
+                    }
+                }
+            });
+            cardFlag=itemView.findViewById(R.id.cardflag);
             tvTitle= itemView.findViewById(R.id.tvTitle);
             tvDescription= itemView.findViewById(R.id.tvDescription);
             ivImage= itemView.findViewById(R.id.ivImage);

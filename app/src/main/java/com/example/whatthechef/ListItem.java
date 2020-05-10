@@ -4,11 +4,13 @@ public class ListItem {
     private String itemName;
     private String itemDescription;
     private String itemImage;
+    private String cardFlag;
 
-    public ListItem(String itemName, String itemDescription, String itemImage) {
+    public ListItem(String itemName, String itemDescription, String itemImage, String cardFlag) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemImage = itemImage;
+        this.cardFlag = cardFlag;
     }
 
     public ListItem() {
@@ -37,5 +39,13 @@ public class ListItem {
 
     public String getItemImage() {
         return itemImage;
+    }
+
+    public String getCardFlag() {
+        return cardFlag;
+    }
+
+    public void setCardFlag(String cardFlag) {
+        this.cardFlag = cardFlag;
     }
 }

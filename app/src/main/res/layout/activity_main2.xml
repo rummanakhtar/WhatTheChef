@@ -100,7 +100,7 @@
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginBottom="90dp"
-        android:background="@drawable/facebookbutton"
+        android:background="@drawable/loadingscreen"
         android:fontFamily="@font/segoeui"
         android:text="Create Account"
         android:textAllCaps="false"

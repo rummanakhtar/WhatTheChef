@@ -12,8 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecipeActivity"></activity>
-        <activity android:name=".Dashboard" />
+        <activity android:name=".FinalRecipe"></activity>
+        <activity
+            android:name=".SecondRecipe"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme"/>
+        <activity
+            android:name=".Dashboard"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SignUpScreen"
             android:screenOrientation="portrait" />
@@ -26,6 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RecipeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

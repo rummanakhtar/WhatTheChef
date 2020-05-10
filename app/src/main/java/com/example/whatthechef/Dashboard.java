@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class Dashboard extends AppCompatActivity {
     String userID;
     private long backPressedTime;
     private Toast backToast;
+    ProgressBar progressBar;
 
 
 
@@ -62,8 +64,10 @@ public class Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
+        progressBar=findViewById(R.id.progressBar3);
         name=findViewById(R.id.namedash);
+
+        progressBar.setVisibility(View.VISIBLE);
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseFirestore=FirebaseFirestore.getInstance();
         final GoogleSignInAccount signInAccount=GoogleSignIn.getLastSignedInAccount(this);
@@ -86,6 +90,7 @@ public class Dashboard extends AppCompatActivity {
                     if(signInAccount !=null){
                         name.setText(firebaseAuth.getCurrentUser().getDisplayName());
                     }
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             });
         }
@@ -104,5 +109,4 @@ public class Dashboard extends AppCompatActivity {
     public void goToRecipe(View view){
         startActivity(new Intent(getApplicationContext(), RecipeActivity.class));
     }
-
 }
