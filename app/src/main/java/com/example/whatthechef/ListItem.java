@@ -13,7 +13,7 @@ public class ListItem {
         this.cardFlag = cardFlag;
     }
 
-    public ListItem() {
+    public ListItem(){
 
     }
 

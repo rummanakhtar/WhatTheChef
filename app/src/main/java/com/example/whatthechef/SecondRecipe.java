@@ -1,12 +1,15 @@
 package com.example.whatthechef;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,11 +24,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class SecondRecipe extends AppCompatActivity {
     RecyclerView recyclerView;
     MyAdapter adapter;
-    private static String JSON_URL="https://rummanakhtar.github.io/dataforwtc/arabiandishes.json";
+    String JSON_URL;
+
     List<ListItem> items;
 
     @Override
@@ -34,12 +40,17 @@ public class SecondRecipe extends AppCompatActivity {
         setContentView(R.layout.activity_second_recipe);
 
         recyclerView = findViewById(R.id.recyclerView);
+        try{
+            if(Objects.requireNonNull(getIntent().getExtras()).getString("jsonURL")==null){
+                JSON_URL="https://rummanakhtar.github.io/dataforwtc/arabiandishes.json";
+            }
+            JSON_URL= Objects.requireNonNull(getIntent().getExtras()).getString("jsonURL");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         items=new ArrayList<>();
         extractData();
-
-//        Intent i=getIntent();
-//        String title=i.getStringExtra("title");
-//        textTitle.setText(title);
     }
     private void extractData() {
         RequestQueue queue= Volley.newRequestQueue(this);
@@ -71,4 +82,6 @@ public class SecondRecipe extends AppCompatActivity {
         });
         queue.add(jsonArrayRequest);
     }
+
+
 }

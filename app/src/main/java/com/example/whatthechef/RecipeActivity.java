@@ -27,7 +27,7 @@ import java.util.List;
 public class RecipeActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MyAdapter adapter;
-    //private static String JSON_URL="https://drive.google.com/uc?export=view&id=1Ow-9OofFXwAx2am6HCntS5CzLWyWx_D9";
+
     private static String JSON_URL="https://rummanakhtar.github.io/dataforwtc/fooddata.json";
     List<ListItem> items;
 
@@ -40,11 +40,6 @@ public class RecipeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         items=new ArrayList<>();
         extractData();
-
-
-        //recyclerView.setHasFixedSize(true);
-
-
     }
 
     private void extractData() {

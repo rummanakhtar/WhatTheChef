@@ -1,9 +1,7 @@
 package com.example.whatthechef;
 
-import android.app.LauncherActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<ListItem> listItems;
@@ -66,22 +62,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     }
                     if(listItems.get(pos).getCardFlag().equals("0")){
                         Intent i=new Intent(v.getContext(),SecondRecipe.class);
+                        jsonSetter(i);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         v.getContext().startActivity(i);
                     }
                     else{
                         Intent i=new Intent(v.getContext(),FinalRecipe.class);
+                        jsonSetter(i);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         v.getContext().startActivity(i);
                     }
+                }
+
+                private void jsonSetter(Intent i) {
+                        if(listItems.get(getAdapterPosition()).getItemName().equalsIgnoreCase("Arabian")){
+                            i.putExtra("jsonURL", "https://rummanakhtar.github.io/dataforwtc/arabiandishes.json");
+                        }else if(listItems.get(getAdapterPosition()).getItemName().equalsIgnoreCase("mexican")){
+                            i.putExtra("jsonURL", "https://rummanakhtar.github.io/dataforwtc/mexican.json");
+                        }
                 }
             });
             cardFlag=itemView.findViewById(R.id.cardflag);
             tvTitle= itemView.findViewById(R.id.tvTitle);
             tvDescription= itemView.findViewById(R.id.tvDescription);
             ivImage= itemView.findViewById(R.id.ivImage);
-
-
         }
     }
 }
