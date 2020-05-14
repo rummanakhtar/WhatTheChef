@@ -42,7 +42,7 @@ public class SecondRecipe extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         try{
             if(Objects.requireNonNull(getIntent().getExtras()).getString("jsonURL")==null){
-                JSON_URL="https://rummanakhtar.github.io/dataforwtc/arabiandishes.json";
+                JSON_URL="https://rummanakhtar.github.io/dataforwtc/veg.json";
             }
             JSON_URL= Objects.requireNonNull(getIntent().getExtras()).getString("jsonURL");
         }catch (Exception e){
@@ -52,6 +52,8 @@ public class SecondRecipe extends AppCompatActivity {
         items=new ArrayList<>();
         extractData();
     }
+    //on create ends
+
     private void extractData() {
         RequestQueue queue= Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONArray>() {

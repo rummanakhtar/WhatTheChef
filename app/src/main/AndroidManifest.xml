@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DashBoard"></activity>
-        <activity android:name=".FinalRecipe" />
+        <activity android:name=".FinalRecipe"
+            android:screenOrientation="portrait"
+            android:theme="@style/FinalTheme"/>
         <activity
             android:name=".SecondRecipe"
             android:screenOrientation="portrait"
@@ -31,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeScreen"
+            android:name=".DashBoard"
             android:screenOrientation="portrait" />
         <activity
             android:name=".RecipeActivity"

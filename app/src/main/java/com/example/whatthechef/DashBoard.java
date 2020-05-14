@@ -63,7 +63,7 @@ public class DashBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
         progressBar=findViewById(R.id.progressBar3);
-        name=findViewById(R.id.namedash);
+        name= findViewById(R.id.namedash);
 
         progressBar.setVisibility(View.VISIBLE);
         firebaseAuth= FirebaseAuth.getInstance();
@@ -77,7 +77,7 @@ public class DashBoard extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //EXTRACTS DATA FROM DATABASE IF USER LOGGED IN VIA EMAIL AND PASSWORD BEGINS
+        //EXTRACTS DATA FROM DATABASE IF USER LOGGED IN VIA EMAIL AND PASSWORD ....BEGINS
         if(firebaseAuth.getCurrentUser() !=null){
             DocumentReference documentReference= firebaseFirestore.collection("users").document(userID);
             documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -98,7 +98,9 @@ public class DashBoard extends AppCompatActivity {
 
     //LOGOUT BUTTON BEGINS
     public void logOut(View view) {
-        FirebaseAuth.getInstance().signOut();
+        if(firebaseAuth.getCurrentUser() !=null){
+            FirebaseAuth.getInstance().signOut();
+        }
         GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut();
         goToLoginScreen();
     }
