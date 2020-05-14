@@ -9,5 +9,6 @@
     </style>
     <style name="MyTheme" parent="AppTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@drawable/blue_bkg</item>
     </style>
 </resources>

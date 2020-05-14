@@ -1,43 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/blue_bkg"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="164dp" />
-
-
-
+    android:background="@drawable/blue_bkg"
+    tools:context=".DashBoard">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.085158154" />
+        app:layout_constraintGuide_begin="35dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.03009576" />
+        app:layout_constraintGuide_begin="22dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.97127223" />
+        app:layout_constraintGuide_end="22dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -45,7 +34,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="35dp" />
-
 
     <TextView
         android:id="@+id/welcometext"
@@ -72,7 +60,6 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
 
     <TextView
         android:id="@+id/namedash"
@@ -123,39 +110,26 @@
         android:layout_marginLeft="19dp"
         android:layout_marginTop="19dp"
         android:fontFamily="@font/seguisb"
-        android:text="International Dishes"
+        android:text="Indian Dishes"
         android:textColor="#FFFFFF"
-        android:textSize="17sp"
+        android:textSize="27sp"
         app:layout_constraintStart_toStartOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="@+id/imageView8" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/segoeui"
-        android:text="104"
-        android:textColor="#8D8D8D"
-        android:textSize="50sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:fontFamily="@font/segoeui"
+        android:layout_marginStart="19dp"
 
-        android:text="Includes Dishes from more than thirteen countries "
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/segoeui"
+        android:text="Cuisines from various parts of India"
         android:textColor="#8D8D8D"
         android:textSize="15sp"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="@+id/vercenterguide"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <ImageView
@@ -181,25 +155,11 @@
         android:layout_marginLeft="19dp"
         android:layout_marginTop="19dp"
         android:fontFamily="@font/seguisb"
-        android:text="Favourites"
+        android:text="Festive Special"
         android:textColor="#FFFFFF"
-        android:textSize="17sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="@+id/imageView9" />
-
-    <TextView
-        android:id="@+id/textView131"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/segoeui"
-        android:text="32"
-        android:textColor="#8D8D8D"
-        android:textSize="50sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -219,15 +179,16 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
         android:layout_marginTop="19dp"
         android:fontFamily="@font/seguisb"
-        android:text="Indian Dishes"
+        android:text="International Dishes"
+        android:maxLines="2"
         android:textColor="#FFFFFF"
-        android:textSize="17sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toTopOf="@+id/imageView10" />
 
@@ -237,25 +198,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/segoeui"
-        android:text="Various Food Categories from more than 10 Indian States"
+        android:text="Includes Dishes from all across the world"
         android:textColor="#8D8D8D"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="@+id/imageView10" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/segoeui"
-        android:text="254"
-        android:textColor="#8D8D8D"
-        android:textSize="50sp"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -276,17 +224,33 @@
     <TextView
         android:id="@+id/textView11"
         android:layout_width="130dp"
-        app:layout_constraintHorizontal_weight="1"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/segoeui"
         android:text="Let's get to know each other"
         android:textColor="#8D8D8D"
         android:textSize="15sp"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textViewfav"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:fontFamily="@font/segoeui"
+        android:maxLines="2"
+        android:text="Ramadan Eid"
+        android:textColor="#8D8D8D"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="@+id/imageView17" />
 
     <TextView
         android:id="@+id/textView17"
@@ -298,7 +262,7 @@
         android:fontFamily="@font/seguisb"
         android:text="About Us"
         android:textColor="#FFFFFF"
-        android:textSize="17sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
@@ -312,7 +276,7 @@
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="0dp"
-        android:layout_height="8dp"
+        android:layout_height="4dp"
         android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
@@ -320,44 +284,44 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView8"
         app:layout_constraintStart_toStartOf="@+id/imageView8"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".19"
+        app:layout_constraintWidth_percent=".1"
         app:srcCompat="@drawable/carddeep" />
 
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/imageView7"
         android:layout_width="0dp"
-        android:layout_height="8dp"
+        android:layout_height="4dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".19"
+        app:layout_constraintWidth_percent=".1"
         app:srcCompat="@drawable/carddeep" />
 
     <ImageView
         android:id="@+id/imageView15"
         android:layout_width="0dp"
-        android:layout_height="8dp"
+        android:layout_height="4dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".19"
+        app:layout_constraintWidth_percent=".1"
         app:srcCompat="@drawable/redcardstrip" />
 
     <ImageView
         android:id="@+id/imageView16"
         android:layout_width="0dp"
-        android:layout_height="8dp"
+        android:layout_height="4dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintEnd_toEndOf="@+id/imageView9"
         app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".19"
+        app:layout_constraintWidth_percent=".1"
         app:srcCompat="@drawable/redcardstrip" />
 
     <ImageView
@@ -379,9 +343,36 @@
         android:alpha="0.5"
         android:background="@drawable/white_frg"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="97dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".150"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8"
+        app:srcCompat="@drawable/india" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".37"
+        android:layout_height="84dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView15"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView121"
+        app:srcCompat="@drawable/world" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

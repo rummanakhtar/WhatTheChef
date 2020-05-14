@@ -107,7 +107,7 @@ public class SignUpScreen extends AppCompatActivity {
                                 }
                             });
                             progressBar.setVisibility(View.INVISIBLE);
-                            startActivity(new Intent(getApplicationContext(),Dashboard.class));
+                            startActivity(new Intent(getApplicationContext(), DashBoard.class));
                             finish();
                             Intent intent = new Intent("finish_activity");
                             sendBroadcast(intent);

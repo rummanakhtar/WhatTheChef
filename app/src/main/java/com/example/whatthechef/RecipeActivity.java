@@ -28,7 +28,7 @@ public class RecipeActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MyAdapter adapter;
 
-    private static String JSON_URL="https://rummanakhtar.github.io/dataforwtc/fooddata.json";
+    private static String JSON_URL="https://rummanakhtar.github.io/dataforwtc/indian.json";
     List<ListItem> items;
 
     @SuppressLint("Assert")
@@ -54,6 +54,7 @@ public class RecipeActivity extends AppCompatActivity {
                         listItem.setItemName(jsonObject.getString("title"));
                         listItem.setItemDescription(jsonObject.getString("description"));
                         listItem.setItemImage(jsonObject.getString("image"));
+                        listItem.setColorStrip(jsonObject.getString("colorstrip"));
                         items.add(listItem);
                     } catch (JSONException e) {
                         e.printStackTrace();

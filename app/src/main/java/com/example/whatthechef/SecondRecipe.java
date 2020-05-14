@@ -65,6 +65,7 @@ public class SecondRecipe extends AppCompatActivity {
                         listItem.setItemDescription(jsonObject.getString("description"));
                         listItem.setCardFlag(jsonObject.getString("cardflag"));
                         listItem.setItemImage(jsonObject.getString("image"));
+                        listItem.setColorStrip(jsonObject.getString("colorstrip"));
                         items.add(listItem);
                     } catch (JSONException e) {
                         e.printStackTrace();

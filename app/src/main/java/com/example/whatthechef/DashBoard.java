@@ -12,11 +12,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -26,7 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.Objects;
 
-public class Dashboard extends AppCompatActivity {
+public class DashBoard extends AppCompatActivity {
     TextView name;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
@@ -63,14 +61,14 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dash_board);
         progressBar=findViewById(R.id.progressBar3);
         name=findViewById(R.id.namedash);
 
         progressBar.setVisibility(View.VISIBLE);
-        firebaseAuth=FirebaseAuth.getInstance();
-        firebaseFirestore=FirebaseFirestore.getInstance();
-        final GoogleSignInAccount signInAccount=GoogleSignIn.getLastSignedInAccount(this);
+        firebaseAuth= FirebaseAuth.getInstance();
+        firebaseFirestore= FirebaseFirestore.getInstance();
+        final GoogleSignInAccount signInAccount= GoogleSignIn.getLastSignedInAccount(this);
 
         //GETS THE CURRENT LOGGED IN USER
         try{
@@ -96,13 +94,13 @@ public class Dashboard extends AppCompatActivity {
         }
         //EXTRACTS DATA FROM DATABASE IF USER LOGGED IN VIA EMAIL AND PASSWORD ENDS
     }
-    //ON CREATE ENDS
+    //On Create Ends
 
     //LOGOUT BUTTON BEGINS
     public void logOut(View view) {
-            FirebaseAuth.getInstance().signOut();
-            GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut();
-            goToLoginScreen();
+        FirebaseAuth.getInstance().signOut();
+        GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut();
+        goToLoginScreen();
     }
     //LOGOUT BUTTON ENDS
 
